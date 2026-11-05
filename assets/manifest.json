@@ -1,0 +1,6 @@
+{
+  "_说明": "可选：把逻辑名映射到自定义文件。未列出的按约定自动查找 images/<逻辑名>.png 或 audio/sfx/<逻辑名>.wav。",
+  "_示例": {
+    "image": "images/characters/player.png"
+  }
+}

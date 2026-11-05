@@ -1,0 +1,43 @@
+{
+  "说明": "三大核心结构的 JSON 模板（示例实例），与 core/models.py 字段对应。",
+  "player": {
+    "name": "冒险者",
+    "hp": 100,
+    "max_hp": 100,
+    "attack": 10,
+    "speed": 8,
+    "mp": 50,
+    "max_mp": 50,
+    "defense": 0,
+    "rank": "青铜",
+    "money": 500,
+    "honor": 0,
+    "exp": 0,
+    "level": 1,
+    "inventory": [
+      { "item_id": "potion", "name": "初级药水", "item_type": "消耗品", "quantity": 3, "price": 25, "heal_hp": 30, "description": "恢复 30 HP" },
+      { "item_id": "iron_sword", "name": "铁剑", "item_type": "装备", "quantity": 1, "price": 120, "equip_slot": "weapon", "attack_bonus": 5, "description": "攻击 +5" }
+    ],
+    "skills": [
+      { "skill_id": "fireball", "name": "火球术", "multiplier": 2.0, "mp_cost": 10, "cooldown": 0, "description": "2 倍攻击伤害" }
+    ],
+    "equipment": {}
+  },
+  "npcs": [
+    { "name": "艾琳", "personality_tags": ["温柔", "酒馆老板娘"], "favorability": 30, "memory": ["初次见面"], "romance": 0 },
+    { "name": "古德", "personality_tags": ["豪爽", "铁匠"], "favorability": 0, "memory": [], "romance": 0 },
+    { "name": "露娜", "personality_tags": ["神秘", "占卜师"], "favorability": 15, "memory": ["帮忙找回水晶球"], "romance": 0 }
+  ],
+  "dungeon": [
+    {
+      "floor_number": 1,
+      "monster_pool": [
+        { "monster_id": "slime", "name": "史莱姆", "hp": 30, "attack": 5, "speed": 3, "exp_reward": 10, "money_reward": 5 }
+      ],
+      "drop_table": [
+        { "item_id": "potion", "name": "初级药水", "weight": 60, "min_count": 1, "max_count": 1 }
+      ],
+      "cleared": false
+    }
+  ]
+}

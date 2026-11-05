@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "双循环 RPG 存档 Schema",
+  "type": "object",
+  "required": ["player", "npcs", "dungeon"],
+  "properties": {
+    "player": { "$ref": "#/definitions/player" },
+    "npcs": { "type": "array", "items": { "$ref": "#/definitions/npc" } },
+    "dungeon": { "type": "array", "items": { "$ref": "#/definitions/floor" } },
+    "meta": { "type": "object" }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["item_id", "name"],
+      "properties": {
+        "item_id": { "type": "string" },
+        "name": { "type": "string" },
+        "item_type": { "type": "string" },
+        "quantity": { "type": "integer", "minimum": 1 },
+        "description": { "type": "string" },
+        "price": { "type": "integer", "minimum": 0 },
+        "heal_hp": { "type": "integer", "minimum": 0 },
+        "heal_mp": { "type": "integer", "minimum": 0 },
+        "equip_slot": { "type": "string" },
+        "attack_bonus": { "type": "integer" },
+        "defense_bonus": { "type": "integer" },
+        "speed_bonus": { "type": "integer" },
+        "hp_bonus": { "type": "integer" },
+        "mp_bonus": { "type": "integer" },
+        "skill_id": { "type": "string" },
+        "affix_desc": { "type": "string" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["skill_id", "name"],
+      "properties": {
+        "skill_id": { "type": "string" },
+        "name": { "type": "string" },
+        "multiplier": { "type": "number" },
+        "mp_cost": { "type": "integer", "minimum": 0 },
+        "cooldown": { "type": "integer", "minimum": 0 },
+        "crit_chance": { "type": "number" },
+        "aoe": { "type": "boolean" },
+        "fizzle_chance": { "type": "number" },
+        "description": { "type": "string" }
+      }
+    },
+    "player": {
+      "type": "object",
+      "required": ["name", "hp", "max_hp", "attack", "speed", "mp", "max_mp", "rank", "money", "inventory", "skills"],
+      "properties": {
+        "name": { "type": "string" },
+        "hp": { "type": "integer", "minimum": 0 },
+        "max_hp": { "type": "integer", "minimum": 1 },
+        "attack": { "type": "integer", "minimum": 0 },
+        "speed": { "type": "integer", "minimum": 0 },
+        "mp": { "type": "integer", "minimum": 0 },
+        "max_mp": { "type": "integer", "minimum": 0 },
+        "defense": { "type": "integer", "minimum": 0 },
+        "rank": { "type": "string" },
+        "money": { "type": "integer", "minimum": 0 },
+        "honor": { "type": "integer" },
+        "exp": { "type": "integer", "minimum": 0 },
+        "level": { "type": "integer", "minimum": 1 },
+        "inventory": { "type": "array", "items": { "$ref": "#/definitions/item" } },
+        "skills": { "type": "array", "items": { "$ref": "#/definitions/skill" } },
+        "equipment": { "type": "object" }
+      }
+    },
+    "npc": {
+      "type": "object",
+      "required": ["name", "personality_tags", "favorability", "memory"],
+      "properties": {
+        "name": { "type": "string" },
+        "personality_tags": { "type": "array", "items": { "type": "string" } },
+        "favorability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "memory": { "type": "array", "items": { "type": "string" } },
+        "romance": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "monster": {
+      "type": "object",
+      "required": ["monster_id", "name", "hp", "attack", "speed"],
+      "properties": {
+        "monster_id": { "type": "string" },
+        "name": { "type": "string" },
+        "hp": { "type": "integer", "minimum": 1 },
+        "attack": { "type": "integer", "minimum": 0 },
+        "speed": { "type": "integer", "minimum": 0 },
+        "exp_reward": { "type": "integer", "minimum": 0 },
+        "money_reward": { "type": "integer", "minimum": 0 },
+        "defense": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "drop_entry": {
+      "type": "object",
+      "required": ["item_id", "name", "weight"],
+      "properties": {
+        "item_id": { "type": "string" },
+        "name": { "type": "string" },
+        "weight": { "type": "integer", "minimum": 1 },
+        "min_count": { "type": "integer", "minimum": 1 },
+        "max_count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "floor": {
+      "type": "object",
+      "required": ["floor_number", "monster_pool", "drop_table", "cleared"],
+      "properties": {
+        "floor_number": { "type": "integer", "minimum": 1 },
+        "monster_pool": { "type": "array", "items": { "$ref": "#/definitions/monster" } },
+        "drop_table": { "type": "array", "items": { "$ref": "#/definitions/drop_entry" } },
+        "cleared": { "type": "boolean" }
+      }
+    }
+  }
+}
